@@ -21,5 +21,5 @@ docker run -it -p 3000:3000 -v /home/<user>/Uber/front:/home/front gallalou/node
 ## Runing the backend code and the database in the docker container
 
 ```
-docker run -it -p 5000:3000 -v /home/yosra/Uber/back:/home/node -v /home/<user>/Uber/database:/data/db gallalou/node-mongo-apache-sshd:v2
+docker run -it -p 5000:3000 -v /home/<user>/Uber/back:/home/node -v /home/<user>/Uber/database:/data/db gallalou/node-mongo-apache-sshd:v2
 ```
