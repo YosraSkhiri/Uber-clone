@@ -1,2 +1,25 @@
-# Uber-Clone
-# Uber-Clone
+# Uber Clone
+
+## Description
+This is a college project, meant to teach us docker, reactjs, mongoDB and express.
+
+## Docker image
+Link: https://hub.docker.com/r/gallalou/node-mongo-apache-sshd
+
+:warning: Make sure to pull the second version of the image:
+
+```
+docker pull gallalou/node-mongo-apache-sshd:v2
+```
+
+## Runing the frontend code in the docker container
+
+```
+docker run -it -p 3000:3000 -v /home/<user>/Uber/front:/home/front gallalou/node-mongo-apache-sshd:v2
+```
+
+## Runing the backend code and the database in the docker container
+
+```
+docker run -it -p 5000:3000 -v /home/yosra/Uber/back:/home/node -v /home/<user>/Uber/database:/data/db gallalou/node-mongo-apache-sshd:v2
+```
