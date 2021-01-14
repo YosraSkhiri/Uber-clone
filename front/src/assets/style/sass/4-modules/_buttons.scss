@@ -38,5 +38,12 @@
     transition-duration: 200ms;
     &:hover {
         background-color: $primary-btn-color--hover;
+        color: $secondary-color;
     } 
+}
+
+.btn--rect-m {
+    display: inline-block;
+    padding: 14px 25px;
+    margin-top: 12px;
 }

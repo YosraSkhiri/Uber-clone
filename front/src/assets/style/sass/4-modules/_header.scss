@@ -1,0 +1,13 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 64px;
+}
+
+.header-content {
+    align-self: center;
+}
+
+.header-heading {
+    max-width: 400px;
+}
