@@ -36,7 +36,7 @@
     background-color: $primary-btn-color;
     color: $secondary-color;
     transition-duration: 200ms;
-    &:hover {
+    &:hover, &:active, &:focus {
         background-color: $primary-btn-color--hover;
         color: $secondary-color;
     } 
