@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    city: {
+    state: {
         type: String,
         required: true
     },
