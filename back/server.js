@@ -2,9 +2,15 @@ const express = require('express');
 const app = express();
 const dbConnect = require('./config/db');
 
+const authRoute = require('./routes/api/auth');
+
 dbConnect();
 
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
+
+app.use('/api/auth/', authRoute);
+
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
     console.log(`App is listening on port: ${PORT}`)
