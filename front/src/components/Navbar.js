@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { useDispatch } from 'react-redux';
 import { show } from '../redux/actions';
+import ModalLogin from "./ModalLogin";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Navbar = () => {
   }
 
   return (
+    <>
     <nav className="navbar">
       <Link to="/">
         <Logo color="white" width={55}/>
@@ -33,6 +35,8 @@ const Navbar = () => {
           <li><Link to="/signup" className="btn btn-sm btn--round btn-white" >Sign up</Link></li>
       </ul>
     </nav>
+    <ModalLogin />
+    </>
   );
 };
 
