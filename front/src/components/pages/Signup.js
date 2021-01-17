@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import apiConsumer from '../../api';
 
 const Signup = () => {
     const [signupInput, setSignupInpput] = useState({
@@ -16,15 +17,21 @@ const Signup = () => {
         });
     }
 
-    const handleSubmit = (e) => {
-        
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await apiConsumer.post('auth/signup/', signupInput);
+            console.log(res.data.msg);
+        } catch(error) {
+            console.log(error.response.data.errors)
+        }
     }
 
     return (
         <div>
             <div>
                 <h1>Sign up</h1>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label className="bl" htmlFor="firstname">Firstname</label>
                     <input 
                         type="text" 
@@ -114,10 +121,7 @@ const Signup = () => {
                         /> <label htmlFor="driver">Driver</label>   
                     </div> 
 
-                    <button 
-                        type="submit" 
-                        onSubmit={handleSubmit}
-                    >Sign up</button>
+                    <button type="submit">Sign up</button>
                 </form>
             </div>
         </div>
