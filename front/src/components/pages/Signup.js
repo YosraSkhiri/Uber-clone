@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import apiConsumer from '../../api';
+import Navbar from '../Navbar';
 
 const Signup = () => {
     const [signupInput, setSignupInpput] = useState({
@@ -29,10 +30,11 @@ const Signup = () => {
 
     return (
         <div>
-            <div>
-                <h1>Sign up</h1>
+            <Navbar />
+            <div className="form-container">
+                <h1 className="heading-1 center-txt">Sign up</h1>
                 <form onSubmit={handleSubmit}>
-                    <label className="bl" htmlFor="firstname">Firstname</label>
+                    <label className="bl txt-input-label" htmlFor="firstname">Firstname</label>
                     <input 
                         type="text" 
                         placeholder="Firstname" 
@@ -40,19 +42,21 @@ const Signup = () => {
                         name="firstname" 
                         onChange={handleChange}
                         value={signupInput.firstname}
+                        className="txt-input"
                     />
 
-                    <label className="bl" htmlFor="lastname">Lastname</label>
-                    <input 
+                    <label className="bl txt-input-label" htmlFor="lastname">Lastname</label>
+                    <input
                         type="text" 
                         placeholder="Lastname" 
                         id="lastname" 
                         name="lastname"
                         onChange={handleChange}
                         value={signupInput.lastname}
+                        className="txt-input"
                     />
 
-                    <label className="bl" htmlFor="email">Email</label>
+                    <label className="bl txt-input-label" htmlFor="email">Email</label>
                     <input 
                         type="email" 
                         placeholder="Email" 
@@ -60,9 +64,10 @@ const Signup = () => {
                         name="email"
                         onChange={handleChange}
                         value={signupInput.email}
+                        className="txt-input"
                     />
 
-                    <label className="bl" htmlFor="password">Password</label>
+                    <label className="bl txt-input-label" htmlFor="password">Password</label>
                     <input 
                         type="password" 
                         placeholder="Password" 
@@ -70,14 +75,16 @@ const Signup = () => {
                         name="password"
                         onChange={handleChange}
                         value={signupInput.password}
+                        className="txt-input"
                     />
 
-                    <label className="bl" htmlFor="state">State</label>
+                    <label className="bl txt-input-label" htmlFor="state">State</label>
                     <select 
                         onChange={handleChange}
                         value={signupInput.state}
                         id="state" 
                         name="state"
+                        className="txt-input"
                     >
                         <option value="Ariana">Ariana</option>
                         <option value="Beja">Beja</option>
@@ -104,7 +111,8 @@ const Signup = () => {
                         <option value="Tunis">Tunis</option>
                         <option value="Zaghouan">Zaghouan</option>
                     </select>
-                    <div>
+                    <div className="radio-btn-group">
+                        <p className="txt-input-label">Choose a rider account or a driver account</p>
                         <input 
                             type="radio" 
                             id="rider" 
@@ -121,7 +129,7 @@ const Signup = () => {
                         /> <label htmlFor="driver">Driver</label>   
                     </div> 
 
-                    <button type="submit">Sign up</button>
+                    <button type="submit" className="btn btn--rect-m btn-black btn--rect-full-width">Sign up</button>
                 </form>
             </div>
         </div>

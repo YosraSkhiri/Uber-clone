@@ -38,6 +38,8 @@ a, a:hover, a:focus, a:active {
  button,
  input { /* 1 */
    overflow: visible;
+   border: none;
+   background: none;
  }
  
  /**
@@ -48,6 +50,8 @@ a, a:hover, a:focus, a:active {
  button,
  select { /* 1 */
    text-transform: none;
+   border: none;
+   background: none;
  }
  
  /**
@@ -62,4 +66,14 @@ a, a:hover, a:focus, a:active {
    border: none;
    background: none;
    cursor: pointer;
+ }
+
+ select {
+  -moz-appearance:none;
+  -webkit-appearance: none;
+  appearance:none;
+  background-image: url('https://maxcdn.icons8.com/Share/icon/Arrows//expand_arrow1600.png');
+  background-repeat: no-repeat;
+  background-size:15px;
+  background-position: right center;
  }

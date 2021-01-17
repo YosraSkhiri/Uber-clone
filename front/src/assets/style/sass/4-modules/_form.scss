@@ -1,0 +1,32 @@
+.form-container {
+    max-width: 400px;
+    margin: 2em auto;
+}
+
+.bl {
+    display: block;
+}
+
+.txt-input-label {
+    margin-bottom: 8px;
+    color: $primary-color;
+}
+
+.txt-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1em;
+    background-color: $input-bg-color;
+}
+
+.radio-btn-group {
+    margin-bottom: 1em;
+
+    & > input[type="radio"] {
+        margin-right: 8px;
+    }
+
+    & > label {
+        margin-right: 16px;
+    }
+}
