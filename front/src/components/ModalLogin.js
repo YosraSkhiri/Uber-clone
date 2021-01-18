@@ -24,8 +24,14 @@ const ModalLogin = () => {
                     </svg>
                 </div>  
                 <div className="login-modal_links">
-                    <Link className="login-modal_link">Driver login</Link>
-                    <Link className="login-modal_link">Rider login</Link>  
+                    <Link 
+                        to="/login" 
+                        onClick={ hideModal }
+                        className="login-modal_link">Driver login</Link>
+                    <Link 
+                        to="/login"
+                        onClick={ hideModal } 
+                        className="login-modal_link">Rider login</Link>  
                 </div>
             </div> : null
         }
