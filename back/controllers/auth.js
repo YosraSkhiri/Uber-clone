@@ -66,7 +66,7 @@ module.exports = {
             
             const userId = user._id;
             const passwordCompareResult = await bcrypt.compare(password, user.password);
-            
+
             if(passwordCompareResult){
                 const token = await jwt.sign({ userId }, config.get('jwtPrivateKey'));
                 return res.status(200)
@@ -74,7 +74,7 @@ module.exports = {
                           .json({ msg: ['Logged in successfully.'] });  
             }
 
-            return res.status(400).json({ msg: ['You entered the wrong password or the wrong email.'] });
+            return res.status(401).json({ msg: ['You entered the wrong password or the wrong email.'] });
                
 
         } catch(error) {
