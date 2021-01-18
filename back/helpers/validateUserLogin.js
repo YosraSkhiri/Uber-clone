@@ -2,7 +2,8 @@ validateUserLogin = (LoginData) => {
 
     let {
         email,
-        password
+        password,
+        role
     } = LoginData;
 
     let validationErrors = [];
@@ -19,6 +20,14 @@ validateUserLogin = (LoginData) => {
 
     if(!password) {
         validationErrors.push('Password is required');
+    }
+
+    if(!role) {
+        validationErrors.push('The account type is missing');
+    } else {
+        if(role != 'rider' && role != 'driver') {
+            validationErrors.push('The account type is invalid');
+        }
     }
 
     return validationErrors;
