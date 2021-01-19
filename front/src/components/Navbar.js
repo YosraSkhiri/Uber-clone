@@ -7,7 +7,6 @@ import ModalLogin from "./ModalLogin";
 
 const Navbar = () => {
   const isLogged = useSelector(state => state.login);
-  console.log(isLogged);
   const dispatch = useDispatch();
 
   const showModal = () => {
