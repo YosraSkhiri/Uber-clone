@@ -61,7 +61,7 @@ module.exports = {
         try {
             const user = await User.findOne({ email, role });
             if(!user) {
-                return res.status(401).json({msg: ['Please enter the right email and the right password.']});
+                return res.status(401).json({errors: ['Please enter the right email and the right password.']});
             }
             
             const userId = user._id;
