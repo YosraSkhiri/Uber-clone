@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import apiConsumer from '../../api';
 import Navbar from '../Navbar';
+import { useDispatch } from 'react-redux';
+import { isLoggedIn } from '../../redux/actions';
 
 const Login = () => {
+    const dispatch = useDispatch();
     const { accountType } = useParams();
     const [loginInput, setLoginInpput] = useState({
         email: '',
@@ -25,6 +28,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await apiConsumer.post('auth/login', loginInput);
+            dispatch(isLoggedIn());
             console.log(res.data.msg);
         } catch(error) {
             console.log(error.response.data.errors)
