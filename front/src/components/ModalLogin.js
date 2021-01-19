@@ -25,11 +25,11 @@ const ModalLogin = () => {
                 </div>  
                 <div className="login-modal_links">
                     <Link 
-                        to="/login" 
+                        to="/login/driver" 
                         onClick={ hideModal }
                         className="login-modal_link">Driver login</Link>
                     <Link 
-                        to="/login"
+                        to="/login/rider"
                         onClick={ hideModal } 
                         className="login-modal_link">Rider login</Link>  
                 </div>
