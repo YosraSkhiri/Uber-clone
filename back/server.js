@@ -2,13 +2,14 @@ const express = require('express');
 const app = express();
 const dbConnect = require('./config/db');
 const cors = require('cors');
+const config = require('config');
 const cookieParser = require('cookie-parser');
 const authRoute = require('./routes/api/auth');
 
 dbConnect();
 
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: config.get("corsOrigin") }));
 app.use(cookieParser());
 
 app.use('/api/auth/', authRoute);

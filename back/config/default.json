@@ -5,5 +5,6 @@
         "dbName": "uber-clone"
     },
 
-    "jwtPrivateKey": "wBi6u4cXBF0UgG02crUB"
+    "jwtPrivateKey": "wBi6u4cXBF0UgG02crUB",
+    "corsOrigin": "http://localhost:3000"
 }
