@@ -1,19 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { hide } from '../redux/actions';
 
-const ModalLogin = () => {
-    const isShown = useSelector(state => state.loginModalReducer);
-    const dispatch = useDispatch();
-
-    const hideModal = () => {
-        dispatch(hide());
-    }
+const ModalLogin = ({ loginModalIsShown, hideModal }) => {
 
     return(
         <>
-        {   isShown ?
+        {   loginModalIsShown ?
             <div className="login-modal">
                 <div 
                     className="close-btn"
@@ -26,11 +18,9 @@ const ModalLogin = () => {
                 <div className="login-modal_links">
                     <Link 
                         to="/login/driver" 
-                        onClick={ hideModal }
                         className="login-modal_link">Driver login</Link>
                     <Link 
                         to="/login/rider"
-                        onClick={ hideModal } 
                         className="login-modal_link">Rider login</Link>  
                 </div>
             </div> : null

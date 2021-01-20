@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-import { useDispatch, useSelector } from 'react-redux';
-import { show } from '../redux/actions';
+import { useSelector } from 'react-redux';
 import ModalLogin from "./ModalLogin";
 
 const Navbar = () => {
   const isLogged = useSelector(state => state.login);
-  const dispatch = useDispatch();
+  const [loginModalIsShown, setLoginModalIsShown] = useState(false);
 
   const showModal = () => {
-    dispatch(show());
+    setLoginModalIsShown(true);
+  }
+
+  const hideModal = () => {
+    setLoginModalIsShown(false);
   }
 
   return (
@@ -46,7 +49,7 @@ const Navbar = () => {
         }
       </ul>
     </nav>
-    <ModalLogin />
+    <ModalLogin loginModalIsShown={ loginModalIsShown } hideModal={ hideModal }/>
     </>
   );
 };
