@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import './assets/style/sass/style.scss';
 import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
@@ -6,7 +6,7 @@ import Signup from "./components/pages/Signup";
 
 function App() {
   return (
-    <Router>
+    <>
       <Switch>
         <Route path="/" exact>
           <Home />
@@ -18,7 +18,7 @@ function App() {
           <Login />
         </Route>
       </Switch>
-    </Router>
+    </>
   );
 }
 

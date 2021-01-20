@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useParams } from "react-router-dom";
 import apiConsumer from '../../api';
 import Navbar from '../Navbar';
 import { useDispatch } from 'react-redux';
 import { isLoggedIn } from '../../redux/actions';
+import Toast from '../Toast';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -13,6 +15,7 @@ const Login = () => {
         password: '',
         role: ''
     });
+    const [messages, setMessages] = useState();
 
     useEffect(() => {
         setLoginInpput(loginInput => ({...loginInput, role: accountType}));
@@ -31,7 +34,7 @@ const Login = () => {
             dispatch(isLoggedIn());
             console.log(res.data.msg);
         } catch(error) {
-            console.log(error.response.data.errors)
+            setMessages(error.response.data.errors);
         }
     }
 
@@ -66,6 +69,16 @@ const Login = () => {
                     <button type="submit" className="btn btn--rect-m btn-black btn--rect-full-width">login</button>
                 </form>
             </div>
+            {
+                messages ?
+                <div className="toast-wrapper">
+                {
+                    messages.map(msg => (
+                    <Toast message={msg} key={uuidv4()} />
+                    ))
+                }
+                </div> : null
+            }
         </div>
     )
 }

@@ -4,7 +4,7 @@ import loginReducer from './login';
 
 const allReducers = combineReducers({
     loginModalReducer,
-    login: loginReducer 
+    login: loginReducer
 });
 
 export default allReducers;

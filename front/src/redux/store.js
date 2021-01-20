@@ -4,10 +4,11 @@ import ReduxThunk from 'redux-thunk';
 
 let store = createStore(
     allReducers,
-    compose(
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    /*compose(
         applyMiddleware(ReduxThunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    )**/
 );
 
 export default store;

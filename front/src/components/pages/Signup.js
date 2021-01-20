@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import apiConsumer from '../../api';
 import Navbar from '../Navbar';
+import Toast from '../Toast';
 
 const Signup = () => {
     const [signupInput, setSignupInpput] = useState({
@@ -11,6 +13,7 @@ const Signup = () => {
         state: '',
         role: ''
     });
+    const [messages, setMessages] = useState();
 
     const handleChange = (e) => {
         setSignupInpput({...signupInput,
@@ -24,7 +27,7 @@ const Signup = () => {
             const res = await apiConsumer.post('auth/signup/', signupInput);
             console.log(res.data.msg);
         } catch(error) {
-            console.log(error.response.data.errors)
+            setMessages(error.response.data.errors);
         }
     }
 
@@ -132,6 +135,16 @@ const Signup = () => {
                     <button type="submit" className="btn btn--rect-m btn-black btn--rect-full-width">Sign up</button>
                 </form>
             </div>
+            {
+                messages ?
+                <div className="toast-wrapper">
+                {
+                    messages.map(msg => (
+                    <Toast message={msg} key={uuidv4()} />
+                    ))
+                }
+                </div> : null
+            }
         </div>
     )
 }
