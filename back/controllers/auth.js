@@ -71,7 +71,7 @@ module.exports = {
                 const token = await jwt.sign({ userId }, config.get('jwtPrivateKey'));
                 return res.status(200)
                           .cookie('loginToken', token, { httpOnly: true, secure: true })
-                          .json({ msg: ['Logged in successfully.'] });  
+                          .json({ firstname: user.firstname });  
             }
 
             return res.status(401).json({ msg: ['You entered the wrong password or the wrong email.'] });
