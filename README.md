@@ -17,9 +17,23 @@ docker pull gallalou/node-mongo-apache-sshd:v2
 ```
 docker run -it -p 3000:3000 -v /home/<user>/Uber/front:/home/front gallalou/node-mongo-apache-sshd:v2
 ```
+## to run the react app:
+```
+cd home/front
+```
+```
+npm start
+```
 
 ## Runing the backend code and the database in the docker container
 
 ```
-docker run -it -p 5000:3000 -v /home/<user>/Uber/back:/home/node -v /home/<user>/Uber/database:/data/db gallalou/node-mongo-apache-sshd:v2
+docker run -it -p 4000:4000 -v /home/<user>/Uber/back:/home/node -v /home/<user>/Uber/database:/data/db gallalou/node-mongo-apache-sshd:v2
+```
+## to run the server and the database:
+```
+cd home/node
+```
+```
+mongod & npm start
 ```
