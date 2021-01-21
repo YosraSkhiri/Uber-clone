@@ -4,5 +4,6 @@ const userContr = require('../../controllers/user');
 const auth = require('../../middlewares/auth');
 
 router.get('/me', auth, userContr.getUser);
+router.post('/update', auth, userContr.updateUser);
 
 module.exports = router;
