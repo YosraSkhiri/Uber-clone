@@ -1,4 +1,8 @@
-import { Switch, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+import { isLoggedIn } from './redux/actions';
 import './assets/style/sass/style.scss';
 import Map from "./components/Map";
 import Home from "./components/pages/Home";
@@ -6,6 +10,15 @@ import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 
 function App() {
+  const dispatch = useDispatch();
+  let isLogged = useSelector(state => state.login);
+  console.log(isLogged)
+  useEffect(() => {
+    if(Cookies.get('isLogged') === 'true') {
+      dispatch(isLoggedIn());
+    }
+  });
+
   return (
     <>
       <Switch>
@@ -16,10 +29,10 @@ function App() {
           <Map />
         </Route>
         <Route path="/signup" exact>
-          <Signup />
+          { isLogged ? <Redirect to="/" /> : <Signup /> }
         </Route>
         <Route path="/login/:accountType" exact>
-          <Login />
+          { isLogged ? <Redirect to="/" /> : <Login /> }
         </Route>
       </Switch>
     </>

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import apiConsumer from '../../api';
 import Navbar from '../Navbar';
@@ -15,12 +14,6 @@ const Signup = () => {
         role: ''
     });
     const [messages, setMessages] = useState();
-
-    useEffect(() => {
-        if(Cookies.get('isLogged') === 'true') {
-            window.location.replace('/');
-        }
-    });
 
     const handleChange = (e) => {
         setSignupInpput({...signupInput,
@@ -151,7 +144,7 @@ const Signup = () => {
                     ))
                 }
                 </div> : null
-            }
+            } 
         </div>
     )
 }

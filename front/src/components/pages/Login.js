@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import apiConsumer from '../../api';
 import Navbar from '../Navbar';
 import { useDispatch } from 'react-redux';
@@ -11,6 +10,7 @@ import Toast from '../Toast';
 const Login = () => {
     const dispatch = useDispatch();
     const { accountType } = useParams();
+    const history = useHistory();
     const [loginInput, setLoginInpput] = useState({
         email: '',
         password: '',
@@ -19,9 +19,6 @@ const Login = () => {
     const [messages, setMessages] = useState();
 
     useEffect(() => {
-        if(Cookies.get('isLogged') === 'true') {
-            window.location.replace('/');
-        }
         setLoginInpput(loginInput => ({...loginInput, role: accountType}));
     }, [setLoginInpput, accountType]);
 
@@ -37,7 +34,7 @@ const Login = () => {
             const res = await apiConsumer.post('auth/login', loginInput);
             dispatch(isLoggedIn());
             dispatch(setUserData(res.data));
-            window.location.replace('/');
+            history.push('/');
         } catch(error) {
             setMessages(error.response.data.errors);
         }
