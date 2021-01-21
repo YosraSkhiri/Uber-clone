@@ -4,13 +4,12 @@ validateUserUpdate = (updatedData) => {
         lastname,
         email,
         phone,
-        state,
-        password
+        state
     } = updatedData;
 
     let validationErrors = [];
 
-    if(!firstname || !lastname || !email || !phone || !state || !password) {
+    if(!firstname || !lastname || !email || !phone || !state) {
         if(!firstname) {
             validationErrors.push('Firstname is required.');
         }
@@ -29,10 +28,6 @@ validateUserUpdate = (updatedData) => {
 
         if(!state) {
             validationErrors.push('State is required.');
-        }
-
-        if(!password) {
-            validationErrors.push('Password is required.');
         }
     }
 
@@ -56,10 +51,6 @@ validateUserUpdate = (updatedData) => {
     const validPhoneinitials = ['9', '2', '3', '5' , '4'];
     if(phone && !validPhoneinitials.includes(phone.substring(0, 1))) {
         validationErrors.push('Please enter a valid phone number.');
-    }
-    
-    if(password && password.length < 8) {
-        validationErrors.push('Please enter a longer password (min 8 characters).');
     }
 
     const tunisianStates = ['Ariana', 'Beja', 'Ben Arous', 'Bizerte', 'Gabes', 
