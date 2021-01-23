@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar';
 import apiConsumer from '../../api';
 import { v4 as uuidv4 } from 'uuid';
+import Toast from '../Toast';
 
 class Settings extends Component{
 
@@ -19,7 +20,9 @@ class Settings extends Component{
             resetPassword: {
                 oldPassword: '',
                 newPassword: ''
-            }
+            },
+
+            messages: []
         }
         this.getUserData = this.getUserData.bind(this);
         this.handleChangeForUpdate = this.handleChangeForUpdate.bind(this);
@@ -38,7 +41,7 @@ class Settings extends Component{
             const userData = await apiConsumer.get('user/me');
             this.setState({ updateForm: userData.data });
         } catch(error) {
-            return error
+            this.setState({ messages: error.response.data.errors});
         }
     }
 
@@ -55,10 +58,10 @@ class Settings extends Component{
     async handleSubmitForUpdate(e) {
         e.preventDefault();
         try {
-            await apiConsumer.post('user/update', this.state.updateForm);
-
+            const submitedUpdateForm = await apiConsumer.post('user/update', this.state.updateForm);
+            this.setState({ messages: submitedUpdateForm.data.msg});
         } catch(error) {
-
+            this.setState({ messages: error.response.data.errors});
         }
     }
 
@@ -171,6 +174,16 @@ class Settings extends Component{
                         </div>
                     </div>
                 </div>
+                {
+                    this.state.messages ?
+                    <div className="toast-wrapper">
+                    {
+                        this.state.messages.map(msg => (
+                        <Toast message={msg} key={uuidv4()} />
+                        ))
+                    }
+                    </div> : null
+                } 
             </div>
         )
     }
