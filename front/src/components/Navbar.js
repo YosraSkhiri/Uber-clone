@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
+import apiConsumer from '../api';
 import Logo from "./Logo";
 import { useSelector, useDispatch } from 'react-redux';
 import { isLoggedIn } from '../redux/actions';
@@ -11,6 +12,7 @@ const Navbar = () => {
   const isLogged = useSelector(state => state.login);
   const user = useSelector(state => state.userData);
   const [loginModalIsShown, setLoginModalIsShown] = useState(false);
+  const [dropdownIsShown, setDropdownIsShown] = useState(false);
 
   useEffect(() => {
     if(Cookies.get('isLogged') === 'true') {
@@ -26,6 +28,20 @@ const Navbar = () => {
     setLoginModalIsShown(false);
   }
 
+  const logout = async () => {
+    try {
+      const hi = await apiConsumer.post('auth/logout');
+      console.log(hi.data)
+      window.location.href = '/'
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  const toggleDropdown = () => {
+    setDropdownIsShown(!dropdownIsShown);
+  }
+
   return (
     <>
     <nav className="navbar">
@@ -35,11 +51,40 @@ const Navbar = () => {
       <ul className="navbar_links">
         {
           isLogged ?
-            <li>
-              <button to="/signup" className="btn btn-sm btn--round btn-white" >
+            <li className="navbar_link-dropdown-container">
+              <button 
+                onClick={ toggleDropdown }
+                className="btn btn-sm btn--round btn-white"
+              >
                 Welcome {user.firstname}!
               </button>
-            </li> :
+              {
+                dropdownIsShown ?
+                <div className="navbar_link-dropdown">
+                  <ul>
+                    <li>
+                      <Link 
+                        to="/map"
+                        className="navbar_link-dropdown-link"
+                      >Map</Link>
+                    </li>
+                    <li>
+                      <Link 
+                        to="/settings"
+                        className="navbar_link-dropdown-link"
+                      >Settings</Link>
+                    </li>
+                    <li>
+                      <button
+                        className="navbar_link-dropdown-link"
+                        onClick={ logout }
+                      >Logout</button>
+                    </li>
+                  </ul>
+                </div> : null
+               }
+            </li>
+            :
             <>
             <li>
               <button 

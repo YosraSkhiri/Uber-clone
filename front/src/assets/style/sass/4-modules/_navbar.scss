@@ -16,3 +16,21 @@
         margin-right: 5px;
     }
 }
+
+.navbar_link-dropdown-container{
+    position: relative;
+}
+
+.navbar_link-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    background-color: white;
+    color: $primary-color;
+    border: 1px solid black;
+
+    &-link {
+        display: block;
+        padding: 16px 32px;
+    }
+}

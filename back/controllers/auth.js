@@ -84,8 +84,8 @@ module.exports = {
     },
 
     logout: (req, res) => {
-        res.clearCookie('loginToken', {httpOnly: true});
-        res.clearCookie('isLogged');
+        res.clearCookie('loginToken', { httpOnly: true, secure: true });
+        res.clearCookie('isLogged', { secure: true });
         return res.status(200).json({msg: ['Logged out successfully!']});
     },
 
