@@ -1,18 +1,22 @@
 const express = require('express');
 const app = express();
-var http = require('http').Server(app);
+const http = require('http');
+const socketio = require('socket.io');
 const dbConnect = require('./config/db');
 const cors = require('cors');
 const config = require('config');
 const cookieParser = require('cookie-parser');
 const authRoute = require('./routes/api/auth');
 const userRoute = require('./routes/api/user');
+const getNearestTaxis = require('./controllers/taxi').getNearestTaxis;
 
-var io = require('socket.io')(http, {
-    cors: {
-        origin: 'http://localhost:3000',
-        credentials: true
-    }
+const server = http.createServer(app);
+
+var io = socketio(server, {
+  cors: {
+      origin: 'http://localhost:3000',
+      credentials: true
+  }
 });
 
 dbConnect();
@@ -26,33 +30,22 @@ app.use('/api/user/', userRoute);
 
 const PORT = process.env.PORT || 4000;
 
-
-
-let interval = [];
-
 io.on("connection", (socket) => {
+  console.log('connected');
 
-  console.log("New client connected "+socket.id);
-
-  if (interval[socket.id]) {
-    clearInterval(interval[socket.id]);
-  }
-
-  interval[socket.id] = setInterval(() => getApiAndEmit(socket), 1000);
+  socket.on('nearest taxis', (userCoords, callback) => {
+      console.log('hiiii')
+      const result = getNearestTaxis();
+      console.log(result);
+      callback({nearestTaxisToUser: result});
+  });
 
   socket.on("disconnect", () => {
-    console.log("Client disconnected "+socket.id);
-    clearInterval(interval[socket.id]);
+    console.log("Client disconnected");
   });
 
 });
 
-const getApiAndEmit = socket => {
-  const response = new Date();
-  // Emitting a new message. Will be consumed by the client
-  socket.emit("FromAPI", response);
-};
-
-http.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server app is listening on port ${PORT}`);
 });

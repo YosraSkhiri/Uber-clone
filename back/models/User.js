@@ -34,6 +34,16 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true
+    },
+
+    location: {
+        altitude: {
+            type: Number
+        },
+
+        longitude: {
+            type: Number
+        }
     }
 });
 

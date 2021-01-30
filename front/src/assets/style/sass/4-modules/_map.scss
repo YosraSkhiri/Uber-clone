@@ -1,0 +1,7 @@
+.taxi-marker ~ .taxi-info{
+    display: none;
+}
+
+.taxi-marker:hover ~ .taxi-info{
+    display: block;
+}
